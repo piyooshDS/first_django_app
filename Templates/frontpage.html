@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      {% load static %}
+      <link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css'%}">
+      <style type="text/css">
+         h6
+         {
+         color:red;
+         font-size:13px;
+         }
+      </style>
+      <script type="text/javascript">
+         function find()
+         {
+            p=document.getElementById("wish").value;
+            if(p==='sell' || p==='buy')
+            {
+               document.getElementById("bt").disabled=false;
+               return true;
+               
+            }
+            else
+            {
+               document.getElementById("bt").disabled=true;
+               alert('check your choice ,input as per example')
+               return false;
+            }
+            
+         }
+      </script>
+      <script type="text/javascript" src="{% static 'jquery-3.2.1.min.js' %}"></script>
+      <title>FrontPage</title>
+      <script type="text/javascript">
+         $(document).ready(function(){
+           $("#h").click(function (){
+            $("#jk").toggle();
+             $("#mid").hide();
+         
+         });
+           $("#c").click(function (){
+            $("#mid").toggle();
+         
+         });
+           $("#se").click(function (){
+            $("#mid").toggle();
+         
+         });
+         
+         
+         });
+            
+         
+      </script>
+   </head>
+   <body>
+   <div class="container-fluid">
+      <body>
+         <div class="row" style="height:200px;background-repeat:no-repeat;margin-top:20px;background-size:100%;background-image: url('{% static "image1.jpeg"%}')";>
+         <div class="col-sm-8"></div>
+         <div class="col-sm-2" style="padding-top:100px;"><a href="#log"><button class="btn btn-primary">Login</button></a></div>
+         <div class="col-sm-2" style="padding-top:100px;"><button class="btn btn-warning" id="h">Register</button></div>
+   </div>
+   <div class="row" id="jk" style="padding-top:40px;display:none;">
+   <div class="col-md-6" align="center"><button class="btn btn-success" id="c">Register as Customer</button></div>
+   <div class="col-md-6"><button class="btn btn-success" id="se">Register as a seller</button></div>
+   </div>
+   <div class="row" style="padding-top:100px;">
+   <div class="col-md-2"></div>
+   <div class="col-md-6" id="mid" style="padding-top:30px;padding-left:15px;background-color:gainsboro;border-radius:15px;display:none;">
+   <legend align="center"><u>Register form</u></legend>
+   <form class = "form-horizontal" role = "form" action="/get/" method="POST">
+   {% csrf_token %}
+   <div class = "form-group">
+   <label for = "name" class = "col-md-4 ">Name</label>
+   <div class = "col-md-10">
+   <input type = "text" class = "form-control" id = "name" name="name">
+   <h6>{{form.errors.name}}</h6>
+   </div>
+   <div class = "form-group">
+   <label for = "name" class = "col-md-4 ">E-mail</label>
+   <div class = "col-md-10">
+   <input type = "mail" class = "form-control" id = "name" name="email">
+   <h6>{{form.errors.email}}</h6>
+   </div>
+   </div>
+   <div class = "form-group">
+   <label for = "fname" class = "col-md-4 ">Password</label>
+   <div class = "col-md-10">
+   <input type = "Password" class = "form-control" id = "fname" name="password" >
+   <h6>{{form.errors.password}}</h6>
+   </div>
+   <div class = "form-group">
+   <label for = "name" class = "col-md-4 ">Contact</label>
+   <div class = "col-md-10">
+   <input type = "text" class = "form-control" id = "name" name="contact"  >
+   <h6>{{form.errors.contact}}</h6>
+   </div>
+   </div>
+   <div class = "form-group">
+   <label for = "name" class = "col-md-4 "> I want to</label>
+   <div class = "col-md-10">
+   <input type = "text" class = "form-control" id = "wish" name="want_to"  placeholder=" Write sell or buy  eg.- I want to buy" onfocusout="find()">
+   <h6>{{form.errors.want_to}}</h6>
+   </div>
+   <br>
+   <div class = "form-group">
+   <div class = "col-md-offset-3 col-md-8">
+   <button type = "submit" class = "btn btn-success" id="bt" disabled="true">Register</button>
+   </div>
+   </div>
+   </form>
+   </div>
+   </div>
+   </div>
+   </form>
+   </div>
+   </div>
+   </body>
+   <div class="row" style="padding-top:40px;" id="log">
+   <div class="col-md-4"></div>
+   <div class="col-md-4"><form class = "form-horizontal" role = "form" action="/check/" method="POST">
+                  {% csrf_token %}
+
+                  <div class = "form-group">
+                  {{ k }}
+                     
+                     <div class = "col-md-10">
+                        <input type = "text" class = "form-control" id = "name" name="email" placeholder="Enter your email"  onfocus="c()">
+                        <h6>{{form.errors.email}}</h6>
+                     </div>
+                  </div>
+                  <div class = "form-group">
+                     
+                     <div class = "col-md-10">
+                        <input type = "Password" class = "form-control" id = "fname" name="password"  placeholder="Enter your Password">
+                        <h6>{{form.errors.password}} </h6>
+                        
+                     </div>
+                  </div>
+                  <div class = "form-group">
+                     <div class = "col-md-offset-2 col-md-10">
+                        <button type = "submit" class = "btn btn-success">login</button>
+                     </div>
+                  </div>
+               </form></div>
+   <div class="col-md-4"></div>
+   </div>
+   
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+{% load static %}
+      <link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css'%}">
+	<title>Seller</title>
+</head>
+<body>
+<body>
+<div class="container-fluid">
+
+<div class="row" style="padding-top:30px;">
+<div class="col-md-10"><div align="center">hiii {{ user.name }}</div></div>
+<div class="col-md-2"><button class="btn btn-danger btn-lg"  onclick="location.href={% url 'sigout' %}" >Logout</button></div>
+</div>
+
+<div class="row" style="padding-top:100px;">
+<div class="col-md-2"></div>
+<div class="col-md-6"> {{ l }}<legend align="center"><u>Product Table</u></legend>
+            <form class = "form-horizontal" role = "form" action="/sell/" method="POST">
+               {% csrf_token %}
+               <div class = "form-group">
+                  <label for = "name" class = "col-md-4 ">Seller name</label>
+                  <div class = "col-md-10">
+                     <input type = "text" class = "form-control" id = "name" name="seller" placeholder="enter your name as per Registraion">
+                     <h6>{{form.errors.seller}}</h6>
+                  </div>
+               <div class = "form-group">
+                  <label for = "name" class = "col-md-4 ">Product name</label>
+                  <div class = "col-md-10">
+                     <input type = "text" class = "form-control" id = "name" name="name">
+                     <h6>{{form.errors.name}}</h6>
+                  </div>
+                  <div class = "form-group">
+                     <label for = "name" class = "col-md-4 ">Price</label>
+                     <div class = "col-md-10">
+                        <input type = "text" class = "form-control" id = "name" name="price" required>
+                        <h6>{{form.errors.price}}</h6>
+                     </div>
+                  </div>
+                  <div class = "form-group">
+                     <label for = "fname" class = "col-md-4 ">Details</label>
+                     <div class = "col-md-10">
+                        <input type="text" class = "form-control" name="details">
+                        <h6>{{form.errors.details}}</h6>
+                     </div>
+                     
+            <div class = "form-group">
+                           <div class = "col-md-offset-3 col-md-8">
+                              <button type = "submit" class = "btn btn-success">Add to sell</button>
+                           </div>
+                        </div>
+            </form>
+	
+
+
+</div>
+<div class="col-md-4"></div>
+</div>
+
+</body>
+</html>
